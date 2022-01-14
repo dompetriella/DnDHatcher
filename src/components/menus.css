@@ -1,0 +1,87 @@
+:root {
+    font-size: 16px;
+}
+
+.hatcher-title-container {
+    font-size: 3rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 30vh;
+    width: 100%;
+    background-color: indigo;
+    color: white;
+    
+}
+
+.hatcher-mode-option {
+    font-size: 1.5rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: auto;
+    padding: 1rem;
+    background-color: forestgreen;
+    border-radius: 1rem;
+}
+
+.text-box-container {
+    flex-direction: column;
+    gap: 10vh;
+}
+
+.text-box-next-button {
+    padding: 2rem;
+    border: solid 10px red;
+    box-shadow: -2px 2px 3px black;
+}
+
+@media only screen and (max-width: 768px) {
+
+.start-menu {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    text-align: center;
+    background-color: white;
+    height: 70vh;
+    width: 90vw;
+    border-radius: 1rem;
+}
+
+.hatcher-title-container {
+    font-size: 3rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 40vh;
+    width: 100%;
+    background-color: indigo;
+    color: white;
+    
+}
+
+.hatcher-mode-option {
+    font-size: 1.5rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 8vh;
+    margin: 2vh 0;
+    padding: 1rem;
+    width: 80%;
+    background-color: forestgreen;
+    border-radius: 1rem;
+    box-shadow: 2px 3px 2px black;
+}
+
+.easy-mode {
+    background-color: lightblue;
+}
+
+.text-box-container {
+    flex-direction: column;
+    gap: 10vh;
+}
+
+}
