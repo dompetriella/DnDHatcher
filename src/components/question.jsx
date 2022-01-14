@@ -3,9 +3,7 @@ import './menus.css';
 
 function Question(props) {
   return (
-    <main>
-        <div>{props.text}</div>
-    </main>
+    <div className="question-text-box">{props.text}</div>
   );
 }
 

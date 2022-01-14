@@ -8,3 +8,10 @@ main {
     width: 100%;
     background-color: orange;
 }
+
+.qa-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}

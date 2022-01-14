@@ -58,6 +58,7 @@ function App() {
             questionAndAnswers.push(
                 <Question 
                     text = {currentQuestion.question}
+                    key = {"question"}
                 />
             )
 
@@ -69,8 +70,13 @@ function App() {
                     key = {i}
                 />
                 )}
-
-            setMainContent(questionAndAnswers)
+            console.log('first here')
+            setMainContent(
+                    <div className="qa-container">
+                        {questionAndAnswers}
+                    </div>
+                )
+            console.log('here')
         }
 
     }
