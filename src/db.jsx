@@ -932,7 +932,7 @@ export const questions = [
     {
         question: "You're walking to work and a little green alien pops out from the bushes and hands you a strange device covered in buttons and switches",
         a1: {
-            "text": "You take the device and immediate start pressing all the buttons",
+            "text": "You take the device and immediately start pressing all the buttons",
             "first": ["Rash"],
             "second": ["Bold"],
             "third": ["Brave","Energetic","Daring","Jolly"],

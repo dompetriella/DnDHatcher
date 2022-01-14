@@ -4,6 +4,7 @@ import './menus.css';
 function Answer(props) {
   return (
     <main>
+        <div>{props.text}</div>
     </main>
   );
 }

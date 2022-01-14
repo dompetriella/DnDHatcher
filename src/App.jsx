@@ -9,8 +9,11 @@ import './App.css';
 function App() {
 
     const userQuestionNumber = 4;
+    const getdbQuestions = () => {
+        return questions
+    }
 
-    const [mainContent, setMainContent] = useState();
+    const [mainContent, setMainContent] = useState([]);
     const [quizQuestions, setQuizQuestions] = useState([]);
 
     // main starting screen
@@ -36,18 +39,46 @@ function App() {
     }
 
     const createQuestionsList = () => {
-        let allQuestions = [...questions]
-        let chosenQuestionsList = []
+        let allQuestions = [...getdbQuestions()]
+        let returnList = []
         for (let i = 0; i < userQuestionNumber; i++) {
-            let randomQuestionIndex = Math.floor(Math.random()*allQuestions.length-1);
-            chosenQuestionsList.push(allQuestions[randomQuestionIndex])
+            let randomQuestionIndex = Math.floor(Math.random()*allQuestions.length);
+            returnList.push(allQuestions[randomQuestionIndex])
             console.log(`${i}: ${(allQuestions[randomQuestionIndex]).question}`)
             allQuestions.splice(randomQuestionIndex, 1)
         }
+        console.log(`Generated List length: ${returnList}`)
+        return returnList
+    }
+
+    const displayQuestion = () => {
+        if (quizQuestions.length > 0) {
+            let currentQuestion = quizQuestions[0]
+            let questionAndAnswers = []
+            questionAndAnswers.push(
+                <Question 
+                    text = {currentQuestion.question}
+                />
+            )
+
+            for (let i = 1; i < Object.keys(currentQuestion).length; i++) {
+                let answerText = currentQuestion[Object.keys(currentQuestion)[i]].text
+                questionAndAnswers.push(
+                <Answer 
+                    text = {answerText}
+                    key = {i}
+                />
+                )}
+
+            setMainContent(questionAndAnswers)
+        }
+
     }
 
     const mainQuizMode = () => {
-        createQuestionsList()
+        setQuizQuestions(createQuestionsList())
+        console.log(`State list length: ${quizQuestions.length}`)
+        displayQuestion()
     }
 
     return (
