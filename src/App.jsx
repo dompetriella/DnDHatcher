@@ -15,6 +15,7 @@ function App() {
 
     const [mainContent, setMainContent] = useState([]);
     const [quizQuestions, setQuizQuestions] = useState([]);
+    const [questionsAnswers, setQuestionsAnswered] = useState(0)
 
     // main starting screen
     const startScreen = (props) => {
@@ -52,6 +53,7 @@ function App() {
     }
 
     const displayQuestion = () => {
+        //console.log("here1")
         if (quizQuestions.length > 0) {
             let currentQuestion = quizQuestions[0]
             let questionAndAnswers = []
@@ -69,14 +71,16 @@ function App() {
                     text = {answerText}
                     key = {i}
                 />
-                )}
-            console.log('first here')
+                )
+            }
+
+            //console.log('here2')
             setMainContent(
                     <div className="qa-container">
                         {questionAndAnswers}
                     </div>
                 )
-            console.log('here')
+            //console.log('here3')
         }
 
     }
