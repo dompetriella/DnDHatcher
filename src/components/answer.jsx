@@ -3,7 +3,11 @@ import './menus.css';
 
 function Answer(props) {
   return (
-    <div className="answer-text-box">{props.text}</div>
+    <div 
+    className="answer-text-box"
+    onClick = {props.onClick}
+    >{props.text}
+    </div>
   );
 }
 

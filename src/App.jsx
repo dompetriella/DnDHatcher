@@ -14,8 +14,7 @@ function App() {
     }
 
     const [mainContent, setMainContent] = useState([]);
-    const [quizQuestions, setQuizQuestions] = useState([]);
-    const [questionsAnswers, setQuestionsAnswered] = useState(0)
+    let quizQuestionsList = []
 
     // main starting screen
     const startScreen = (props) => {
@@ -53,9 +52,9 @@ function App() {
     }
 
     const displayQuestion = () => {
-        //console.log("here1")
-        if (quizQuestions.length > 0) {
-            let currentQuestion = quizQuestions[0]
+        console.log('here1')
+        if (quizQuestionsList.length > 0) {
+            let currentQuestion = quizQuestionsList[0]
             let questionAndAnswers = []
             questionAndAnswers.push(
                 <Question 
@@ -63,31 +62,40 @@ function App() {
                     key = {"question"}
                 />
             )
-
+            console.log('here2')
             for (let i = 1; i < Object.keys(currentQuestion).length; i++) {
                 let answerText = currentQuestion[Object.keys(currentQuestion)[i]].text
                 questionAndAnswers.push(
                 <Answer 
+                    onClick = {displayQuestion}
                     text = {answerText}
                     key = {i}
                 />
                 )
             }
 
-            //console.log('here2')
+            console.log('here3')
             setMainContent(
                     <div className="qa-container">
                         {questionAndAnswers}
                     </div>
                 )
-            //console.log('here3')
+
+        quizQuestionsList.splice(0, 1)
+
         }
+        
+        else {
+            setMainContent(
+            <div>Congrats, all questions complete</div>
+            )
+        }
+
 
     }
 
     const mainQuizMode = () => {
-        setQuizQuestions(createQuestionsList())
-        console.log(`State list length: ${quizQuestions.length}`)
+        quizQuestionsList = createQuestionsList()
         displayQuestion()
     }
 
