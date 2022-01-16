@@ -8,13 +8,61 @@ import './App.css';
 
 function App() {
 
+    const [mainContent, setMainContent] = useState([]);
+    const [userTotalsString, setUserTotalsString] = useState("")
+
+    const userTotals = {
+        name: "test",
+        characterName: "characterTest",
+        calculatedRace: "dwarf",
+        calculatedClass: "bard",
+
+        raceTotals: {
+            "dragonborn": 0,
+            "dwarf":0,
+            "elf":0,
+            "gnome":0,
+            "halfing":0,
+            "half-orc":0,
+            "human":0,
+            "tiefling":0,
+        },
+
+        classTotals: {
+            "barbarian":0,
+            "bard":0,
+            "cleric":0,
+            "druid":0,
+            "fighter":0,
+            "monk":0,
+            "paladin":0,
+            "ranger":0,
+            "rogue":0,
+            "sorcerer":0,
+            "warlock":0,
+            "wizard":0
+        }
+    }
+
     const userQuestionNumber = 4;
     const getdbQuestions = () => {
         return questions
     }
-
-    const [mainContent, setMainContent] = useState([]);
     let quizQuestionsList = []
+
+
+    const printOutUserTotals = () => {
+        let printString = ""
+        printString += `---Calculated Race: ${userTotals.calculatedRace}---`
+        printString += `---Calculated Class: ${userTotals.calculatedClass}---`
+        for (const property in userTotals.raceTotals) {
+            printString += `${property}: ${userTotals.raceTotals[property]} \n`
+        }       
+        for (const property in userTotals.classTotals) {
+            printString += `${property}: ${userTotals.classTotals[property]} \n`
+        }   
+        setUserTotalsString(printString)
+    }
 
     // main starting screen
     const startScreen = (props) => {
@@ -26,6 +74,7 @@ function App() {
     }
     useEffect(() => {
         startScreen()
+        printOutUserTotals()
     }, [])
 
     const beginQuiz = () => {
@@ -64,10 +113,18 @@ function App() {
             )
             console.log('here2')
             for (let i = 1; i < Object.keys(currentQuestion).length; i++) {
-                let answerText = currentQuestion[Object.keys(currentQuestion)[i]].text
+                let answerObject = currentQuestion[Object.keys(currentQuestion)[i]]
+                
+                let answerText = answerObject.text
+                let firstNature = answerObject.first[Math.floor(Math.random()*answerObject.first.length)]
+                let secondNature = answerObject.second[Math.floor(Math.random()*answerObject.second.length)]
+                let thirdNature = answerObject.third[Math.floor(Math.random()*answerObject.third.length)]
+                let background = answerObject.background[Math.floor(Math.random()*answerObject.background.length)]
+
+            
                 questionAndAnswers.push(
                 <Answer 
-                    onClick = {displayQuestion}
+                    onClick = {calculateAnswer}
                     text = {answerText}
                     key = {i}
                 />
@@ -94,6 +151,10 @@ function App() {
 
     }
 
+    const calculateAnswer = (firstNature, secondNature, thirdNature, background) => {
+        displayQuestion()
+    }
+
     const mainQuizMode = () => {
         quizQuestionsList = createQuestionsList()
         displayQuestion()
@@ -101,6 +162,7 @@ function App() {
 
     return (
         <main>
+            {userTotalsString}
             {mainContent}
         </main>
     );
