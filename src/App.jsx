@@ -14,8 +14,8 @@ function App() {
     const userTotals = {
         name: "test",
         characterName: "characterTest",
-        calculatedRace: "dwarf",
-        calculatedClass: "bard",
+        calculatedRace: "",
+        calculatedClass: "",
 
         raceTotals: {
             "dragonborn": 0,
@@ -48,6 +48,11 @@ function App() {
     const getdbQuestions = () => {
         return questions
     }
+
+    const getdbNatures = () => {
+        return natures
+    }
+
     let quizQuestionsList = []
 
 
@@ -93,15 +98,12 @@ function App() {
         for (let i = 0; i < userQuestionNumber; i++) {
             let randomQuestionIndex = Math.floor(Math.random()*allQuestions.length);
             returnList.push(allQuestions[randomQuestionIndex])
-            console.log(`${i}: ${(allQuestions[randomQuestionIndex]).question}`)
             allQuestions.splice(randomQuestionIndex, 1)
         }
-        console.log(`Generated List length: ${returnList}`)
         return returnList
     }
 
     const displayQuestion = () => {
-        console.log('here1')
         if (quizQuestionsList.length > 0) {
             let currentQuestion = quizQuestionsList[0]
             let questionAndAnswers = []
@@ -111,7 +113,6 @@ function App() {
                     key = {"question"}
                 />
             )
-            console.log('here2')
             for (let i = 1; i < Object.keys(currentQuestion).length; i++) {
                 let answerObject = currentQuestion[Object.keys(currentQuestion)[i]]
                 
@@ -124,14 +125,17 @@ function App() {
             
                 questionAndAnswers.push(
                 <Answer 
-                    onClick = {calculateAnswer}
+                    calculateAnswer = {calculateAnswer}
                     text = {answerText}
                     key = {i}
+                    firstNature = {firstNature}
+                    secondNature = {secondNature}
+                    thirdNature = {thirdNature}
+                    background = {background}
                 />
                 )
             }
 
-            console.log('here3')
             setMainContent(
                     <div className="qa-container">
                         {questionAndAnswers}
@@ -144,7 +148,12 @@ function App() {
         
         else {
             setMainContent(
-            <div>Congrats, all questions complete</div>
+            <div>
+                <div>--- Congrats, all questions complete ---</div>
+                <div>Race: {userTotals.calculatedRace}</div>
+                <div>Class: {userTotals.calculatedClass}</div>
+            </div>
+
             )
         }
 
@@ -152,6 +161,57 @@ function App() {
     }
 
     const calculateAnswer = (firstNature, secondNature, thirdNature, background) => {
+        
+        const firstNatureObj = getdbNatures()[firstNature]
+        const secondNatureObj = getdbNatures()[secondNature]
+        const thirdNatureObj = getdbNatures()[thirdNature]
+
+        //calculates race totals for race tiers
+        for (const race in firstNatureObj['race']) {
+            userTotals.raceTotals[race] += (firstNatureObj['race'][race]) * 3
+        }      
+        for (const race in secondNatureObj['race']) {
+            userTotals.raceTotals[race] += secondNatureObj['race'][race] * 2        
+        }        
+        for (const race in thirdNatureObj['race']) {
+            userTotals.raceTotals[race] += thirdNatureObj['race'][race]
+        }      
+
+        //calculates class totals for class tiers
+        for (const clas in firstNatureObj['class']) {
+            userTotals.classTotals[clas] += firstNatureObj['class'][clas] * 3
+        }        
+        for (const clas in secondNatureObj['class']) {
+            userTotals.classTotals[clas] += secondNatureObj['class'][clas] * 2
+        }        
+        for (const clas in thirdNatureObj['class']) {
+            userTotals.classTotals[clas] += thirdNatureObj['class'][clas]
+        }           
+
+
+        let selectedRace = {race: "", raceTotal: 0}
+        for (const userRace in userTotals.raceTotals) {
+            if (userTotals.raceTotals[userRace] > selectedRace.raceTotal) {
+                selectedRace.race = userRace
+                selectedRace.raceTotal = userTotals.raceTotals[userRace]
+            }
+        }
+        userTotals.calculatedRace = selectedRace.race
+        console.log(`Current Selected Race: ${selectedRace.race} - ${selectedRace.raceTotal}`)
+        console.log(`User Race: ${userTotals.calculatedRace}`)
+
+        let selectedClass = {clas: "", classTotal: 0}
+        for (const userClass in userTotals.classTotals) {
+            if (userTotals.classTotals[userClass] > selectedClass.classTotal) {
+                selectedClass.clas = userClass
+                selectedClass.classTotal = userTotals.classTotals[userClass]
+            }
+        }
+        userTotals.calculatedClass = selectedClass.clas
+        console.log(`Current Selected Class: ${selectedClass.clas} - ${selectedClass.classTotal}`)
+        console.log(`User Class: ${userTotals.calculatedClass}`)
+
+        printOutUserTotals()
         displayQuestion()
     }
 
@@ -162,7 +222,6 @@ function App() {
 
     return (
         <main>
-            {userTotalsString}
             {mainContent}
         </main>
     );
