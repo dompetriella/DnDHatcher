@@ -2,15 +2,22 @@ import React from 'react';
 import './menus.css';
 
 function TextBox(props) {
-  return (
-    <main className="text-box-container">
-        <div>{props.text}</div>
-        <div 
-            className="text-box-next-button" 
+
+    let buttonDiv = ""
+
+    if (props.button) {
+        buttonDiv = (<div 
+            className="text-box-button" 
             onClick = {props.onClick}
             >{props.buttonText}
-        </div>
-    </main>
+        </div>)
+    }
+
+  return (
+    <div className="text-box-container">
+        <div>{props.text}</div>
+        {buttonDiv}
+    </div>
   );
 }
 

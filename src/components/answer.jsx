@@ -5,7 +5,7 @@ function Answer(props) {
   return (
     <div 
     className="answer-text-box"
-    onClick = {() => props.calculateAnswer(props.firstNature, props.secondNature, props.thirdNature, props.background)}
+    onClick = {() => props.calculateAnswer(props.firstNature, props.secondNature, props.thirdNature)}
     >{props.text}
     </div>
   );

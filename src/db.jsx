@@ -1079,4 +1079,33 @@ export const questions = [
         },
     },
 
+    {    
+        question: "Your favorite band is in town- but tickets are incredibly expensive!",
+        
+        a1: {
+        "text": "Realize you don't have enough money in your budget and miss the concert",
+        "first": ["Logical"],
+        "second": ["Careful","Dutiful","Focused"],
+        "third": ["Contemplative","Timid","Stoic"],
+        "background": [],
+        },
+        
+        a2: {
+        "text": "Go anyway!  You only live once!",
+        "first": ["Rash"],
+        "second": ["Daring","Decisive","Easygoing"],
+        "third": ["Bold","Brave","Energetic","Naive"],
+        "background": [],
+        },
+        
+        a3: {
+        "text": "Go to the concert and scalp tickets at the door to break even",
+        "first": ["Clever","Intuitive"],
+        "second": ["Ambitious","Quirky"],
+        "third": ["Daring","Practical","Rowdy"],
+        "background": ["Charlatan"],
+        },
+    
+    },
+
 ]

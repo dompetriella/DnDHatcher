@@ -16,6 +16,7 @@ function App() {
         characterName: "characterTest",
         calculatedRace: "",
         calculatedClass: "",
+        background: [],
 
         raceTotals: {
             "dragonborn": 0,
@@ -42,6 +43,7 @@ function App() {
             "warlock":0,
             "wizard":0
         }
+
     }
 
     const userQuestionNumber = 4;
@@ -88,6 +90,7 @@ function App() {
             text = {"You're going to be asked a few questions, just answer how you (or your character) would answer them"}
             buttonText = {"Next"}
             onClick = {mainQuizMode}
+            button = {true}
             />
         )
     }
@@ -131,7 +134,6 @@ function App() {
                     firstNature = {firstNature}
                     secondNature = {secondNature}
                     thirdNature = {thirdNature}
-                    background = {background}
                 />
                 )
             }
@@ -152,6 +154,12 @@ function App() {
                 <div>--- Congrats, all questions complete ---</div>
                 <div>Race: {userTotals.calculatedRace}</div>
                 <div>Class: {userTotals.calculatedClass}</div>
+                <TextBox 
+                    text = {"Oh yeah, it's all coming together.  Just a few more questions"}
+                    button = {true}
+                    buttonText = {"Continue"}
+                    onClick = {raceQuizMode}
+                />
             </div>
 
             )
@@ -210,6 +218,7 @@ function App() {
         userTotals.calculatedClass = selectedClass.clas
         console.log(`Current Selected Class: ${selectedClass.clas} - ${selectedClass.classTotal}`)
         console.log(`User Class: ${userTotals.calculatedClass}`)
+        userTotals.background.push(background)
 
         printOutUserTotals()
         displayQuestion()
@@ -218,6 +227,41 @@ function App() {
     const mainQuizMode = () => {
         quizQuestionsList = createQuestionsList()
         displayQuestion()
+    }
+
+    const raceQuizMode = () => {
+        switch(userTotals.calculatedRace) {
+
+        case "dwarf":
+            setMainContent(<div>DWARF</div>)
+            break;
+        case "elf":
+            setMainContent(<div>ELF</div>)
+            break;
+        case "human":
+            setMainContent(<div>HUMAN</div>)
+            break;
+        case "half-elf":
+            setMainContent(<div>HALF-ELF</div>)
+            break;
+        case "gnome":
+            setMainContent(<div>GNOME</div>)
+            break;
+        case "halfling":
+            setMainContent(<div>HALFLING</div>)
+            break;
+        case "half-orc":
+            setMainContent(<div>HALF-ORC</div>)
+            break;
+        case "dragonborn":
+            setMainContent(<div>DRAGONBORN</div>)
+            break;
+        case "tiefling":
+            setMainContent(<div>TIEFLING</div>)
+            break;
+        default:
+            setMainContent(<div>Not ready yet.  Refresh page</div>)
+} 
     }
 
     return (

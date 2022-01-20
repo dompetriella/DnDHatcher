@@ -1,3 +1,12 @@
+:root {
+    --red: #ca314a;
+    --purple: #85316c;
+    --indigo: #5715bf;
+    --grey: #809e84;
+    --green: #acc535;
+    --orange: #cc7540;
+}
+
 main {
     display: flex;
     align-items: center;
