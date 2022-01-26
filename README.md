@@ -1,6 +1,6 @@
 (WIP)
 
-DND HATCHER
+## DND HATCHER
 
 Have you ever wanted to play DnD?  Weren't sure where to start?  You found the right obscure app!
 Take a personality test with some general questions and it'll give you your character's
