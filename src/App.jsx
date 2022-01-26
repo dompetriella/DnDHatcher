@@ -8,9 +8,10 @@ import './App.css';
 
 function App() {
 
+    //whatever setMainContent is, it's renders on the page
     const [mainContent, setMainContent] = useState([]);
-    const [userTotalsString, setUserTotalsString] = useState("")
 
+    //character totals
     const userTotals = {
         name: "test",
         characterName: "characterTest",
@@ -46,30 +47,23 @@ function App() {
 
     }
 
-    const userQuestionNumber = 4;
+    //sets how many questions are answered in quiz mode
+    const userQuestionNumber = 10;
+
+    //gets the questions object for the main quiz
     const getdbQuestions = () => {
         return questions
     }
-
+    //gets the natures object
     const getdbNatures = () => {
         return natures
     }
 
+
+    //main quiz questions list store
     let quizQuestionsList = []
-
-
-    const printOutUserTotals = () => {
-        let printString = ""
-        printString += `---Calculated Race: ${userTotals.calculatedRace}---`
-        printString += `---Calculated Class: ${userTotals.calculatedClass}---`
-        for (const property in userTotals.raceTotals) {
-            printString += `${property}: ${userTotals.raceTotals[property]} \n`
-        }       
-        for (const property in userTotals.classTotals) {
-            printString += `${property}: ${userTotals.classTotals[property]} \n`
-        }   
-        setUserTotalsString(printString)
-    }
+    let raceQuestionsList = []
+    let classQuestionsList = []
 
     // main starting screen
     const startScreen = (props) => {
@@ -81,7 +75,6 @@ function App() {
     }
     useEffect(() => {
         startScreen()
-        printOutUserTotals()
     }, [])
 
     const beginQuiz = () => {
@@ -95,6 +88,7 @@ function App() {
         )
     }
 
+    // creates a randomnly shuffled list of questions that is userQuestionNumber in length
     const createQuestionsList = () => {
         let allQuestions = [...getdbQuestions()]
         let returnList = []
@@ -106,7 +100,8 @@ function App() {
         return returnList
     }
 
-    const displayQuestion = () => {
+    //for displaying questions/answers in main quiz mode
+    const displayMainModeQuestion = () => {
         if (quizQuestionsList.length > 0) {
             let currentQuestion = quizQuestionsList[0]
             let questionAndAnswers = []
@@ -148,6 +143,7 @@ function App() {
 
         }
         
+        //once main mode quiz is done
         else {
             setMainContent(
             <div>
@@ -168,6 +164,7 @@ function App() {
 
     }
 
+    //calculates and adds values to user object based on what answer they clicked on in the quiz
     const calculateAnswer = (firstNature, secondNature, thirdNature, background) => {
         
         const firstNatureObj = getdbNatures()[firstNature]
@@ -197,6 +194,7 @@ function App() {
         }           
 
 
+        //does a quick loop to calculate current selected race
         let selectedRace = {race: "", raceTotal: 0}
         for (const userRace in userTotals.raceTotals) {
             if (userTotals.raceTotals[userRace] > selectedRace.raceTotal) {
@@ -204,6 +202,8 @@ function App() {
                 selectedRace.raceTotal = userTotals.raceTotals[userRace]
             }
         }
+
+        //sets calculated selected race to user object
         userTotals.calculatedRace = selectedRace.race
         console.log(`Current Selected Race: ${selectedRace.race} - ${selectedRace.raceTotal}`)
         console.log(`User Race: ${userTotals.calculatedRace}`)
@@ -220,17 +220,21 @@ function App() {
         console.log(`User Class: ${userTotals.calculatedClass}`)
         userTotals.background.push(background)
 
-        printOutUserTotals()
-        displayQuestion()
+        displayMainModeQuestion()
     }
 
+    // logical functional layout of main quiz mode
     const mainQuizMode = () => {
         quizQuestionsList = createQuestionsList()
-        displayQuestion()
+        displayMainModeQuestion()
     }
 
+    // logical functional layout of race quiz mode
     const raceQuizMode = () => {
+
+        raceQuestionsList = createRaceQuestionsList(userTotals.calculatedRace)
         switch(userTotals.calculatedRace) {
+
 
         case "dwarf":
             setMainContent(<div>DWARF</div>)

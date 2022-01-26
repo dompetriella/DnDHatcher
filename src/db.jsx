@@ -1016,7 +1016,7 @@ export const questions = [
         a2: {
             "text": "When you have time to think a good response",
             "first": ["Focused"],
-            "second": ["Comtemplative"],
+            "second": ["Contemplative"],
             "third": ["Calm","Careful"],
             "background": []
         },
@@ -1104,6 +1104,180 @@ export const questions = [
         "second": ["Ambitious","Quirky"],
         "third": ["Daring","Practical","Rowdy"],
         "background": ["Charlatan"],
+        },
+    
+    },
+
+ {    
+        question: "The mayor of the town wishes to speak to you.  How do you speak to them?",
+        
+        a1: {
+        "text": "Speak calmly and clearly, with excellent dictation",
+        "first": ["Calm"],
+        "second": ["Careful","Dutiful","Stoic"],
+        "third": ["Serious"],
+        "background": ["Noble"],
+        },
+        
+        a2: {
+        "text": "You might stumble over a word or two, but you can hold a conversation",
+        "first": ["Quiet","Timid"],
+        "second": ["Careful","Contemplative"],
+        "third": ["Naive"],
+        "background": [],
+        },
+        
+        a3: {
+        "text": "It's just a person, talk however you want!",
+        "first": ["Rowdy"],
+        "second": ["Aloof","Bold","Brave","Daring","Easygoing"],
+        "third": ["Practical"],
+        "background": [],
+        },
+    
+    },
+
+    {    
+        question: "It's the weekend, but no one is free to hang out with",
+        
+        a1: {
+        "text": "Hang out with yourself!  You're good company",
+        "first": ["Practical"],
+        "second": ["Deep","Easygoing"],
+        "third": ["Aloof","Flexible","Quiet"],
+        "background": ["Hermit"],
+        },
+        
+        a2: {
+        "text": "Go out and make some new friends!",
+        "first": ["Flexible","Outgoing"],
+        "second": ["Ambitious","Jolly","Rash"],
+        "third": ["Energetic"],
+        "background": [],
+        },
+        
+        a3: {
+        "text": "Fetal position until the weekend's over",
+        "first": ["Quirky"],
+        "second": ["Quiet","Timid"],
+        "third": ["Deep","Focused"],
+        "background": ["Hermit"],
+        },
+    
+    },
+
+    {    
+        question: "Are you usually late for events?",
+        
+        a1: {
+        "text": "Yes",
+        "first": ["Aloof"],
+        "second": ["Easygoing","Flexible"],
+        "third": ["Forgiving"],
+        "background": [],
+        },
+        
+        a2: {
+        "text": "No",
+        "first": ["Astute","Decisive"],
+        "second": ["Dutiful","Practical","Stoic"],
+        "third": ["Deep"],
+        "background": [],
+        },
+    
+    },
+
+  {    
+        question: "A friendly looking person walks up and wants to shake your hand",
+        
+        a1: {
+        "text": "Ask them their name first, who knows who they could be!",
+        "first": ["Careful","Timid"],
+        "second": ["Decisive","Intuitive","Opinionated"],
+        "third": ["Serious","Practical"],
+        "background": [],
+        },
+        
+        a2: {
+        "text": "Awkwardly go in for the fist bump",
+        "first": ["Aloof","Naive"],
+        "second": ["Quirky"],
+        "third": ["Easygoing","Rash"],
+        "background": [],
+        },
+        
+        a3: {
+        "text": "Eagerly shake their hand, it's great to meet new people!",
+        "first": ["Ambitious","Outgoing"],
+        "second": ["Brave","Easygoing"],
+        "third": ["Energetic"],
+        "background": [],
+        },
+    
+    },
+
+    {    
+        question: "Your favorite color?",
+        
+        a1: {
+        "text": "Red",
+        "first": ["Bold","Brave","Serious","Stoic"],
+        "second": ["Daring","Decisive","Opinionated","Rash"],
+        "third": ["Ambitious","Dutiful"],
+        "background": [],
+        },
+        
+        a2: {
+        "text": "Blue",
+        "first": ["Calm","Focused"],
+        "second": ["Contemplative","Deep","Logical"],
+        "third": ["Practical","Stoic"],
+        "background": [],
+        },
+        
+        a3: {
+        "text": "Grey",
+        "first": ["Humble","Serious","Practical"],
+        "second": ["Astute","Clever","Focused","Logical"],
+        "third": ["Aloof","Deep","Quiet"],
+        "background": [],
+        },
+
+        a4: {
+        "text": "Black",
+        "first": ["Deep","Logical"],
+        "second": ["Serious","Stoic"],
+        "third": ["Aloof","Focused"],
+        "background": ["Criminal"],
+        },        
+    
+    },
+
+    {    
+        question: "A stranger tells you there's treasure in the cave nearby.  Do you investigate?",
+        
+        a1: {
+        "text": "Dive into the cave at full speed.  TREASURE!",
+        "first": ["Bold","Brave","Rash"],
+        "second": ["Energetic","Naive","Rowdy"],
+        "third": ["Ambitious","Daring","Decisive","Focused"],
+        "background": [],
+        },
+        
+        a2: {
+        "text": "It's a trap!  Ignore the stranger",
+        "first": ["Astute","Careful","Contemplative"],
+        "second": ["Clever","Deep","Opinionated"],
+        "third": ["Decisive","Logical"],
+        "background": [],
+        },
+        
+        a3: {
+        "text": "Make the decision by flipping a coin",
+        "first": ["Easygoing"],
+        "second": ["Quirky","Practical"],
+        "third": ["Aloof"],
+        "background": [],
         },
     
     },

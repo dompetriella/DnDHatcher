@@ -113,3 +113,61 @@
 }
 
 }
+
+@media only screen and (min-width: 768px) {
+
+    .start-menu {
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+        text-align: center;
+        gap: 2.5rem;
+        height: 80vh;
+        width: 100vw;
+        border-radius: 1rem;
+    }
+
+    .hatcher-mode-option {
+        font-size: 1.5rem;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 10rem;
+        margin: 2vh 0;
+        padding: 1rem;
+        width: 50%;
+        background-color: forestgreen;
+        border-radius: 1rem;
+        box-shadow: 2px 3px 2px black;
+    }
+
+    .question-text-box {
+        display: flex;
+        font-size: 2rem;
+        justify-content: center;
+        align-items: center;
+        padding: 1rem;
+        width: 80vw;
+        height: 20vh;
+        background-color: purple;
+        color: white;
+        border-radius: 1rem;
+        box-shadow: 0 0 0 3px white, 0 0 0 5px grey, 0 0 0 7px black; 
+    }
+
+    .answer-text-box {
+        display: flex;
+        font-size: 1.25rem;
+        justify-content: center;
+        align-items: center;
+        width: 60vw;
+        height: 10vh;
+        margin: 1.2rem 0px 0px 0px;
+        padding: 1rem;
+        background-color: lightblue;
+        color: black;
+        text-align: center;
+        border-radius: 1rem;
+        box-shadow: -2px 2px 2px white;
+    }
+}
