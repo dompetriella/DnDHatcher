@@ -1,3 +1,17 @@
+(WIP)
+
+## DND HATCHER
+
+Have you ever wanted to play DnD?  Weren't sure where to start?  You found the right obscure app!
+Take a personality test with some general questions and it'll give you your character's
+race and class, do all the not-fun math so you can get a character sheet to play the is-fun game!
+
+Character sheet printable as a pdf for on the go!
+
+Check out what's here so far -> https://dndhatcher.dompetriella.repl.co/
+
+Made in React and Vite on Repl.it
+
 ## Running React on Repl.it
 
 [React](https://reactjs.org/) is a popular JavaScript library for building user interfaces.
