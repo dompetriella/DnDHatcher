@@ -1,6 +1,7 @@
 import React, {useState, useEffect, useRef} from 'react';
 import {natures, questions} from './db'
 import {raceQuestions} from './support/raceQuestions'
+import {classQuestions} from './support/classQuestions'
 import Question from './components/question'
 import Answer from './components/answer'
 import Start from './components/start'
@@ -61,7 +62,13 @@ function App() {
     }
 
     const getdbRaceQuestions = (race) => {
-        return raceQuestions.race
+        console.log(raceQuestions[race])
+        return raceQuestions[race]
+    }
+
+    const getdbClassQuestions = (clas) => {
+        console.log(classQuestions[clas])
+        return classQuestions[clas]
     }
 
     function shuffleArray(inputArray) {
@@ -75,8 +82,7 @@ function App() {
 
     //main quiz questions list store
     let quizQuestionsList = []
-    let raceQuestionsList = []
-    let classQuestionsList = []
+    let secondaryQuestionsList = []
 
     // main starting screen
     const startScreen = (props) => {
@@ -113,9 +119,9 @@ function App() {
         return returnList
     }
 
-    const createRaceQuestionsList = (race) => {
-        let allRaceQuestions = [...getdbRaceQuestions(race)]
-        return shuffleArray(allRaceQuestions)
+    const createSecondaryQuestionsList = (race, clas) => {
+        let allSecondaryQuestions = [...getdbRaceQuestions(race), ...getdbClassQuestions(clas)]
+        return shuffleArray(allSecondaryQuestions)
     }
 
     //for displaying questions/answers in main quiz mode
@@ -165,7 +171,7 @@ function App() {
         else {
             //for testing purposes, only dwarf paladin is available
             userTotals.calculatedRace = "dwarf"
-            userTotals.calculatedClass = "paladin"
+            userTotals.calculatedClass = "barbarian"
             setMainContent(
             <div>
                 <div>--- Congrats, all questions complete ---</div>
@@ -176,7 +182,7 @@ function App() {
                     text = {"Oh yeah, it's all coming together.  Just a few more questions"}
                     button = {true}
                     buttonText = {"Continue"}
-                    onClick = {raceQuizMode}
+                    onClick = {altQuizMode}
                 />
             </div>
 
@@ -186,9 +192,9 @@ function App() {
 
     }
 
-    const displayAltModeQuestion = (mode, questionsList) => {
-        if (questionList.length > 0) {
-            let currentQuestion = questionList[0]
+    const displayAltModeQuestion = (altQuestionsList) => {
+        if (altQuestionsList.length > 0) {
+            let currentQuestion = altQuestionsList[0]
             let questionAndAnswers = []
             questionAndAnswers.push(
                 <Question 
@@ -211,6 +217,7 @@ function App() {
                     mode = {"alt"}
                     attribute = {attribute}
                     value = {value}
+                    addAttribute = {applyAltPropertiesFromAnswers}
                 />
                 )
             }
@@ -221,26 +228,21 @@ function App() {
                     </div>
                 )
 
-        questionsList.splice(0, 1)
+        altQuestionsList.splice(0, 1)
 
         }
         
         //once main mode quiz is done
         else {
             //for testing purposes, only dwarf paladin is available
-            userTotals.calculatedRace = "dwarf"
-            userTotals.calculatedClass = "paladin"
             setMainContent(
             <div>
-                <div>--- Congrats, all questions complete ---</div>
-                <div> For testing purposes, only dwarf paladin is available</div>
-                <div>Race: {userTotals.calculatedRace}</div>
-                <div>Class: {userTotals.calculatedClass}</div>
+                <div>Subclass: {userTotals['subclass']}</div>
                 <TextBox 
-                    text = {"Oh yeah, it's all coming together.  Just a few more questions"}
+                    text = {"All Done!"}
                     button = {true}
-                    buttonText = {"Continue"}
-                    onClick = {raceQuizMode}
+                    buttonText = {"Finish"}
+                    //onClick = {raceQuizMode}
                 />
             </div>
 
@@ -309,6 +311,12 @@ function App() {
         displayMainModeQuestion()
     }
 
+    const applyAltPropertiesFromAnswers = (attribute, value) => {
+        console.log(`Attribute: ${attribute} - Value: ${value}`)
+        userTotals[attribute] = [...value]
+        displayAltModeQuestion(secondaryQuestionsList)
+    }
+
     // logical functional layout of main quiz mode
     const mainQuizMode = () => {
         quizQuestionsList = createQuestionsList()
@@ -316,19 +324,10 @@ function App() {
     }
 
     // logical functional layout of race quiz mode
-    const raceQuizMode = () => {
-
-        raceQuestionsList = createRaceQuestionsList(userTotals.calculatedRace)
-        switch(userTotals.calculatedRace) {
-
-
-        case "dwarf":
-            setMainContent(<div>DWARF</div>)
-            break;
-        default:
-            setMainContent(<div>Not ready yet.  Refresh page</div>)
-} 
-    }
+    const altQuizMode = () => {
+        secondaryQuestionsList = createSecondaryQuestionsList(userTotals.calculatedRace, userTotals.calculatedClass)
+        displayAltModeQuestion(secondaryQuestionsList)
+    } 
 
     return (
         <main>

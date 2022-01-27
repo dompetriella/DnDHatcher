@@ -3,12 +3,13 @@ import './menus.css';
 
 function Answer(props) {
 
-    const onClickValue = () => {(props.calculateAnswer(props.firstNature, props.secondNature, props.thirdNature)
-    )}
+    let onClickValue = () => {
+        props.calculateAnswer(props.firstNature, props.secondNature, props.thirdNature)
+    }
 
     if (props.mode === "alt") {
         onClickValue = () => {
-            console.log("apply")
+            props.addAttribute(props.attribute, props.value)
         }
     }
 

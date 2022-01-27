@@ -1,6 +1,6 @@
 export const raceQuestions = {
 
-    dwarf: [
+    "dwarf": [
 
         {
             question: "Pick Your dream vacation",
@@ -13,30 +13,6 @@ export const raceQuestions = {
                 "text": "Bathing in sun of a grassy knoll somewhere exotic",
                 "attribute" : "subclass",
                 "value" : "hill dwarf"
-            },
-        },
-
-        {
-            question: "A deranged foe is charging you at high speed! The weapon you reach for is...",
-            a1: {
-                "text": "Big and burly",
-                "attribute" : "weapon",
-                "value" : "warhammer"
-            },
-            a2: {
-                "text": "Sharp and powerful",
-                "attribute" : "weapon",
-                "value" : "battleaxe"
-            },
-            a3: {
-                "text": "Accurate and dangerous",
-                "attribute" : "weapon",
-                "value" : "throwing hammer"
-            },
-            a4: {
-                "text": "What your comfortable with",
-                "attribute" : "weapon",
-                "value" : "handaxe"
             },
         },
 
