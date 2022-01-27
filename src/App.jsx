@@ -1,5 +1,6 @@
 import React, {useState, useEffect, useRef} from 'react';
 import {natures, questions} from './db'
+import {raceQuestions} from './support/raceQuestions'
 import Question from './components/question'
 import Answer from './components/answer'
 import Start from './components/start'
@@ -48,7 +49,7 @@ function App() {
     }
 
     //sets how many questions are answered in quiz mode
-    const userQuestionNumber = 10;
+    const userQuestionNumber = 4;
 
     //gets the questions object for the main quiz
     const getdbQuestions = () => {
@@ -59,6 +60,18 @@ function App() {
         return natures
     }
 
+    const getdbRaceQuestions = (race) => {
+        return raceQuestions.race
+    }
+
+    function shuffleArray(inputArray) {
+    for (let i = inputArray.length - 1; i > 0; i--) {
+            const j = Math.floor(Math.random() * (i + 1));
+            [inputArray[i], inputArray[j]] = [inputArray[j], inputArray[i]];
+        }
+        return inputArray
+
+}
 
     //main quiz questions list store
     let quizQuestionsList = []
@@ -98,6 +111,11 @@ function App() {
             allQuestions.splice(randomQuestionIndex, 1)
         }
         return returnList
+    }
+
+    const createRaceQuestionsList = (race) => {
+        let allRaceQuestions = [...getdbRaceQuestions(race)]
+        return shuffleArray(allRaceQuestions)
     }
 
     //for displaying questions/answers in main quiz mode
@@ -145,9 +163,77 @@ function App() {
         
         //once main mode quiz is done
         else {
+            //for testing purposes, only dwarf paladin is available
+            userTotals.calculatedRace = "dwarf"
+            userTotals.calculatedClass = "paladin"
             setMainContent(
             <div>
                 <div>--- Congrats, all questions complete ---</div>
+                <div> For testing purposes, only dwarf paladin is available</div>
+                <div>Race: {userTotals.calculatedRace}</div>
+                <div>Class: {userTotals.calculatedClass}</div>
+                <TextBox 
+                    text = {"Oh yeah, it's all coming together.  Just a few more questions"}
+                    button = {true}
+                    buttonText = {"Continue"}
+                    onClick = {raceQuizMode}
+                />
+            </div>
+
+            )
+        }
+
+
+    }
+
+    const displayAltModeQuestion = (mode, questionsList) => {
+        if (questionList.length > 0) {
+            let currentQuestion = questionList[0]
+            let questionAndAnswers = []
+            questionAndAnswers.push(
+                <Question 
+                    text = {currentQuestion.question}
+                    key = {"question"}
+                />
+            )
+            for (let i = 1; i < Object.keys(currentQuestion).length; i++) {
+                let answerObject = currentQuestion[Object.keys(currentQuestion)[i]]
+                
+                let answerText = answerObject.text
+                let attribute = answerObject.attribute
+                let value = answerObject.value
+
+            
+                questionAndAnswers.push(
+                <Answer 
+                    text = {answerText}
+                    key = {i}
+                    mode = {"alt"}
+                    attribute = {attribute}
+                    value = {value}
+                />
+                )
+            }
+
+            setMainContent(
+                    <div className="qa-container">
+                        {questionAndAnswers}
+                    </div>
+                )
+
+        questionsList.splice(0, 1)
+
+        }
+        
+        //once main mode quiz is done
+        else {
+            //for testing purposes, only dwarf paladin is available
+            userTotals.calculatedRace = "dwarf"
+            userTotals.calculatedClass = "paladin"
+            setMainContent(
+            <div>
+                <div>--- Congrats, all questions complete ---</div>
+                <div> For testing purposes, only dwarf paladin is available</div>
                 <div>Race: {userTotals.calculatedRace}</div>
                 <div>Class: {userTotals.calculatedClass}</div>
                 <TextBox 
@@ -238,30 +324,6 @@ function App() {
 
         case "dwarf":
             setMainContent(<div>DWARF</div>)
-            break;
-        case "elf":
-            setMainContent(<div>ELF</div>)
-            break;
-        case "human":
-            setMainContent(<div>HUMAN</div>)
-            break;
-        case "half-elf":
-            setMainContent(<div>HALF-ELF</div>)
-            break;
-        case "gnome":
-            setMainContent(<div>GNOME</div>)
-            break;
-        case "halfling":
-            setMainContent(<div>HALFLING</div>)
-            break;
-        case "half-orc":
-            setMainContent(<div>HALF-ORC</div>)
-            break;
-        case "dragonborn":
-            setMainContent(<div>DRAGONBORN</div>)
-            break;
-        case "tiefling":
-            setMainContent(<div>TIEFLING</div>)
             break;
         default:
             setMainContent(<div>Not ready yet.  Refresh page</div>)
