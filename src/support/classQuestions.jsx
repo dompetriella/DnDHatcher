@@ -36,57 +36,47 @@ export const classQuestions = {
             },
             
         }, 
-    ],
-
-    "bard": [
 
         {
-            question: "Are you good with animals?",
+            question: "What's your survival plan for the zombie apocalypse?",
             a1: {
-                "text": "Yes",
+                "text": "Move to the top of a lighthouse to watch it all unfold",
                 "attribute" : "skill",
-                "value" : "animal handling"
+                "value" : "perception"
             },
             a2: {
-                "text": "No",
-                "attribute" : "skill",
-                "value" : "intimidation"
-            },
-        },
-
-        {
-            question: "You're walking through the woods and the leaves below give way to a massive hole.. You're falling into a trap!",
-            a1: {
-                "text": "You quickly grab edge of the hole and leap out",
+                "text": "Fight through the horde!",
                 "attribute" : "skill",
                 "value" : "athletics"
             },
-            a2: {
-                "text": "You reach for a nearby vine and swing to safety",
-                "attribute" : "skill",
-                "value" : "nature"
-            },
 
             a3: {
-                "text": "You fall into the hole but you survive and climb out.  You're stronger than some measly trap!",
+                "text": "Be scarier than the zombies, become their king",
                 "attribute" : "skill",
-                "value" : "survival"
+                "value" : "intimidation"
             },
             
         }, 
     ],
 
+    "bard": [],
+
     "cleric": [
 
         {
-            question: "Are you good with animals?",
+            question: "Your favorite holiday",
             a1: {
-                "text": "Yes",
+                "text": "Easter",
                 "attribute" : "skill",
                 "value" : "animal handling"
             },
             a2: {
-                "text": "No",
+                "text": "Fourth of July",
+                "attribute" : "skill",
+                "value" : "intimidation"
+            },
+            a3: {
+                "text": "Fourth of July",
                 "attribute" : "skill",
                 "value" : "intimidation"
             },

@@ -128,12 +128,12 @@ export const raceQuestions = {
         {
             question: "You're having car trouble.  Do you fix it yourself?",
             a1: {
-                "text": "Yes",
+                "text": "Yes, I'm good with that kind of stuff",
                 "attribute" : "subclass",
                 "value" : "rock gnome"
             },
             a2: {
-                "text": "No",
+                "text": "No, that's a professional's job",
                 "attribute" : "subclass",
                 "value" : "forest gnome"
             },
@@ -155,54 +155,19 @@ export const raceQuestions = {
         
     ],
 
-    // "half-elf": [
-
-    //     {
-    //         question: "Pick Your dream vacation",
-    //         a1: {
-    //             "text": "Somewhere secluded, hiking through a gorgeous mountain range",
-    //             "attribute" : "subclass",
-    //             "value" : "mountain dwarf"
-    //         },
-    //         a2: {
-    //             "text": "Bathing in sun of a grassy knoll somewhere exotic",
-    //             "attribute" : "subclass",
-    //             "value" : "hill dwarf"
-    //         },
-    //     },
-
-    //     {
-    //         question: "Your day job:",
-    //         a1: {
-    //             "text": "Iron and stone blacksmith",
-    //             "attribute" : "tool proficiency",
-    //             "value" : "smith's tools"
-    //         },
-    //         a2: {
-    //             "text": "Brewing beers at the local pub",
-    //             "attribute" : "tool proficiency",
-    //             "value" : "brewer's supplies"
-    //         },
-    //         a3: {
-    //             "text": "City architect and planner",
-    //             "attribute" : "tool proficiency",
-    //             "value" : "mason's tools"
-    //         },
-    //     },
-        
-    // ],
+    "half-elf": [],
 
     "halfling": [
 
         {
             question: "Do you often dream about moving to another country?",
             a1: {
-                "text": "Yes",
+                "text": "Always",
                 "attribute" : "subclass",
                 "value" : "lightfoot halfling"
             },
             a2: {
-                "text": "No",
+                "text": "Not really",
                 "attribute" : "subclass",
                 "value" : "stout halfling"
             },
@@ -211,12 +176,12 @@ export const raceQuestions = {
         {
             question: "Your favorite meal is in the fridge, but it's a week old.  Do you still eat it?",
             a1: {
-                "text": "Yes",
+                "text": "You know it!",
                 "attribute" : "subclass",
                 "value" : "stout halfling"
             },
             a2: {
-                "text": "No",
+                "text": "No, it'll make me ill",
                 "attribute" : "subclass",
                 "value" : "lightfoot halfling"
             },
@@ -224,117 +189,11 @@ export const raceQuestions = {
         
     ],
 
-    "half-orc": [
+    "half-orc": [],
 
-        {
-            question: "Pick Your dream vacation",
-            a1: {
-                "text": "Somewhere secluded, hiking through a gorgeous mountain range",
-                "attribute" : "subclass",
-                "value" : "mountain dwarf"
-            },
-            a2: {
-                "text": "Bathing in sun of a grassy knoll somewhere exotic",
-                "attribute" : "subclass",
-                "value" : "hill dwarf"
-            },
-        },
+    "human": [],
 
-        {
-            question: "Your day job:",
-            a1: {
-                "text": "Iron and stone blacksmith",
-                "attribute" : "tool proficiency",
-                "value" : "smith's tools"
-            },
-            a2: {
-                "text": "Brewing beers at the local pub",
-                "attribute" : "tool proficiency",
-                "value" : "brewer's supplies"
-            },
-            a3: {
-                "text": "City architect and planner",
-                "attribute" : "tool proficiency",
-                "value" : "mason's tools"
-            },
-        },
-        
-    ],
-
-    "human": [
-
-        {
-            question: "Pick Your dream vacation",
-            a1: {
-                "text": "Somewhere secluded, hiking through a gorgeous mountain range",
-                "attribute" : "subclass",
-                "value" : "mountain dwarf"
-            },
-            a2: {
-                "text": "Bathing in sun of a grassy knoll somewhere exotic",
-                "attribute" : "subclass",
-                "value" : "hill dwarf"
-            },
-        },
-
-        {
-            question: "Your day job:",
-            a1: {
-                "text": "Iron and stone blacksmith",
-                "attribute" : "tool proficiency",
-                "value" : "smith's tools"
-            },
-            a2: {
-                "text": "Brewing beers at the local pub",
-                "attribute" : "tool proficiency",
-                "value" : "brewer's supplies"
-            },
-            a3: {
-                "text": "City architect and planner",
-                "attribute" : "tool proficiency",
-                "value" : "mason's tools"
-            },
-        },
-        
-    ],
-
-    "tiefling": [
-
-        {
-            question: "Pick Your dream vacation",
-            a1: {
-                "text": "Somewhere secluded, hiking through a gorgeous mountain range",
-                "attribute" : "subclass",
-                "value" : "mountain dwarf"
-            },
-            a2: {
-                "text": "Bathing in sun of a grassy knoll somewhere exotic",
-                "attribute" : "subclass",
-                "value" : "hill dwarf"
-            },
-        },
-
-        {
-            question: "Your day job:",
-            a1: {
-                "text": "Iron and stone blacksmith",
-                "attribute" : "tool proficiency",
-                "value" : "smith's tools"
-            },
-            a2: {
-                "text": "Brewing beers at the local pub",
-                "attribute" : "tool proficiency",
-                "value" : "brewer's supplies"
-            },
-            a3: {
-                "text": "City architect and planner",
-                "attribute" : "tool proficiency",
-                "value" : "mason's tools"
-            },
-        },
-        
-    ],
-
+    "tiefling": [],
 
 }
 
