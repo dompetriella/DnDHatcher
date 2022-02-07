@@ -121,6 +121,22 @@ function App() {
 
     const createSecondaryQuestionsList = (race, clas) => {
         let allSecondaryQuestions = [...getdbRaceQuestions(race), ...getdbClassQuestions(clas)]
+        allSecondaryQuestions.push(
+        {
+            question: "Are you a gambling person?",
+            a1: {
+                "text": "Yes",
+                "attribute" : "gamble",
+                "value" : "true"
+            },
+            a2: {
+                "text": "No",
+                "attribute" : "gamble",
+                "value" : "false"
+            },
+            
+        } 
+        )
         return shuffleArray(allSecondaryQuestions)
     }
 
@@ -175,7 +191,7 @@ function App() {
             setMainContent(
             <div>
                 <div>--- Congrats, all questions complete ---</div>
-                <div> For testing purposes, only dwarf paladin is available</div>
+                <div> For testing purposes, only dwarf barbarian is available</div>
                 <div>Race: {userTotals.calculatedRace}</div>
                 <div>Class: {userTotals.calculatedClass}</div>
                 <TextBox 
@@ -241,7 +257,7 @@ function App() {
                 <TextBox 
                     text = {"All Done!"}
                     button = {true}
-                    buttonText = {"Finish"}
+                    buttonText = {"Continue to Character Sheet"}
                     //onClick = {raceQuizMode}
                 />
             </div>
