@@ -64,82 +64,99 @@ export const classQuestions = {
     "cleric": [
 
         {
-            question: "Your favorite holiday",
+            question: "Your favorite holiday?",
             a1: {
                 "text": "Easter",
                 "attribute" : "skill",
-                "value" : "animal handling"
+                "value" : "religion"
             },
             a2: {
                 "text": "Fourth of July",
                 "attribute" : "skill",
-                "value" : "intimidation"
+                "value" : "history"
             },
             a3: {
-                "text": "Fourth of July",
+                "text": "Whatever one I can sell the most merchandise at",
                 "attribute" : "skill",
-                "value" : "intimidation"
+                "value" : "persuasion"
             },
         },
 
         {
-            question: "You're walking through the woods and the leaves below give way to a massive hole.. You're falling into a trap!",
+            question: "Your dream job as a little kid:",
             a1: {
-                "text": "You quickly grab edge of the hole and leap out",
+                "text": "Doctor",
                 "attribute" : "skill",
-                "value" : "athletics"
+                "value" : "medicine"
             },
             a2: {
-                "text": "You reach for a nearby vine and swing to safety",
+                "text": "President",
                 "attribute" : "skill",
-                "value" : "nature"
+                "value" : "history"
             },
-
             a3: {
-                "text": "You fall into the hole but you survive and climb out.  You're stronger than some measly trap!",
+                "text": "Detective",
                 "attribute" : "skill",
-                "value" : "survival"
+                "value" : "insight"
             },
-            
-        }, 
+        },
+
     ],
 
     "druid": [
 
         {
-            question: "Are you good with animals?",
+            question: "Do you believe in ghosts?",
             a1: {
                 "text": "Yes",
                 "attribute" : "skill",
-                "value" : "animal handling"
+                "value" : "arcana"
             },
             a2: {
                 "text": "No",
                 "attribute" : "skill",
-                "value" : "intimidation"
+                "value" : "religion"
+            },
+            a3: {
+                "text": "I am a ghost",
+                "attribute" : "skill",
+                "value" : "perception"
             },
         },
 
         {
-            question: "You're walking through the woods and the leaves below give way to a massive hole.. You're falling into a trap!",
+            question: "You won the lottery!  You spend it on:",
             a1: {
-                "text": "You quickly grab edge of the hole and leap out",
+                "text": "A zoo",
                 "attribute" : "skill",
-                "value" : "athletics"
+                "value" : "animal handling"
             },
             a2: {
-                "text": "You reach for a nearby vine and swing to safety",
+                "text": "Donations to the church",
+                "attribute" : "skill",
+                "value" : "religion"
+            },
+            a3: {
+                "text": "Saving the environment",
                 "attribute" : "skill",
                 "value" : "nature"
             },
+        },
 
-            a3: {
-                "text": "You fall into the hole but you survive and climb out.  You're stronger than some measly trap!",
+        {
+            question: "Do you ever feel like you're just getting by?",
+            a1: {
+                "text": "Yes",
                 "attribute" : "skill",
-                "value" : "survival"
+                "value" : "Survival"
             },
-            
-        }, 
+            a2: {
+                "text": "No",
+                "attribute" : "skill",
+                "value" : "insight"
+            },
+        },
+
     ],
 
     "fighter": [

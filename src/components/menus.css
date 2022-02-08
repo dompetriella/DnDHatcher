@@ -94,7 +94,17 @@
     background-color: purple;
     color: white;
     border-radius: 1rem;
-    box-shadow: 0 0 0 3px white, 0 0 0 5px grey, 0 0 0 7px black; 
+    box-shadow: 0 0 0 3px white, 0 0 0 6px grey, 0 0 0 9px darkgrey, 0 0 0 12px black; 
+    animation: hypno-loop 10s ease-in-out infinite;
+}
+
+@keyframes hypno-loop {
+
+    0% { box-shadow: 0 0 0 3px white, 0 0 0 6px grey, 0 0 0 9px darkgrey, 0 0 0         12px black}
+    25% {box-shadow: 0 0 0 3px black, 0 0 0 6px white, 0 0 0 9px grey, 0 0 0 12px darkgrey;  }
+    50% { box-shadow: 0 0 0 3px darkgrey, 0 0 0 6px black, 0 0 0 9px white, 0 0 0 12px grey;  }
+    75% { box-shadow: 0 0 0 3px grey, 0 0 0 6px darkgrey, 0 0 0 9px black, 0 0 0 12px white}
+    100% { box-shadow: 0 0 0 3px white, 0 0 0 6px grey, 0 0 0 9px darkgrey, 0 0 0 12px black}
 }
 
 .answer-text-box {

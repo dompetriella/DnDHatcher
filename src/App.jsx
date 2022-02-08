@@ -186,12 +186,9 @@ function App() {
         //once main mode quiz is done
         else {
             //for testing purposes, only dwarf paladin is available
-            userTotals.calculatedRace = "dwarf"
-            userTotals.calculatedClass = "barbarian"
             setMainContent(
             <div>
                 <div>--- Congrats, all questions complete ---</div>
-                <div> For testing purposes, only dwarf barbarian is available</div>
                 <div>Race: {userTotals.calculatedRace}</div>
                 <div>Class: {userTotals.calculatedClass}</div>
                 <TextBox 
