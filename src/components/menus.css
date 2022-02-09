@@ -1,5 +1,11 @@
 :root {
     font-size: 16px;
+    --red: #ca314a;
+    --purple: #85316c;
+    --indigo: #5715bf;
+    --grey: #809e84;
+    --green: #acc535;
+    --orange: #cc7540;
 }
 
 .hatcher-title-container {
@@ -26,16 +32,52 @@
 }
 
 .text-box-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
     flex-direction: column;
-    gap: 10vh;
+    font-size: 1.5rem;
+    font-weight: bolder;
+    width: 70%;
+    gap: 3rem;
 }
 
 .text-box-button {
-    padding: 2rem;
+    padding: 1rem 2.5rem;
+    max-width: 70vw;
+    min-width: 40vw;
+    font-weight: normal;
     border: solid 10px red;
+    border-radius: 1rem;
+    background-color: lightblue;
     box-shadow: -2px 2px 3px black;
 }
 
+.question-text-box {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 1rem;
+    width: 80vw;
+    height: 20vh;
+    margin: 2rem 0rem 1rem 0rem;
+    background-color: purple;
+    color: white;
+    border-radius: 1rem;
+    box-shadow: 0 0 0 3px white, 0 0 0 6px grey, 0 0 0 9px darkgrey, 0 0 0 12px black; 
+    animation: hypno-loop 10s ease-in-out infinite;
+}
+
+@keyframes hypno-loop {
+
+    0% { box-shadow: 0 0 0 3px white, 0 0 0 6px grey, 0 0 0 9px darkgrey, 0 0 0         12px black}
+    25% {box-shadow: 0 0 0 3px black, 0 0 0 6px white, 0 0 0 9px grey, 0 0 0 12px darkgrey;  }
+    50% { box-shadow: 0 0 0 3px darkgrey, 0 0 0 6px black, 0 0 0 9px white, 0 0 0 12px grey;  }
+    75% { box-shadow: 0 0 0 3px grey, 0 0 0 6px darkgrey, 0 0 0 9px black, 0 0 0 12px white}
+    100% { box-shadow: 0 0 0 3px white, 0 0 0 6px grey, 0 0 0 9px darkgrey, 0 0 0 12px black}
+}
+
+/* for phones */
 @media only screen and (max-width: 768px) {
 
 .start-menu {
@@ -80,41 +122,19 @@
     background-color: lightblue;
 }
 
-.text-box-container {
-    flex-direction: column;
-    gap: 10vh;
-}
-
 .question-text-box {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    padding: 1rem;
-    width: 80vw;
-    height: 20vh;
-    background-color: purple;
-    color: white;
-    border-radius: 1rem;
-    box-shadow: 0 0 0 3px white, 0 0 0 6px grey, 0 0 0 9px darkgrey, 0 0 0 12px black; 
-    animation: hypno-loop 10s ease-in-out infinite;
+    font-size: 1.2rem;
+    width: 70vw;
+    padding: 1rem 2rem;
 }
-
-@keyframes hypno-loop {
-
-    0% { box-shadow: 0 0 0 3px white, 0 0 0 6px grey, 0 0 0 9px darkgrey, 0 0 0         12px black}
-    25% {box-shadow: 0 0 0 3px black, 0 0 0 6px white, 0 0 0 9px grey, 0 0 0 12px darkgrey;  }
-    50% { box-shadow: 0 0 0 3px darkgrey, 0 0 0 6px black, 0 0 0 9px white, 0 0 0 12px grey;  }
-    75% { box-shadow: 0 0 0 3px grey, 0 0 0 6px darkgrey, 0 0 0 9px black, 0 0 0 12px white}
-    100% { box-shadow: 0 0 0 3px white, 0 0 0 6px grey, 0 0 0 9px darkgrey, 0 0 0 12px black}
-}
-
+    
 .answer-text-box {
     display: flex;
     justify-content: center;
     align-items: center;
     width: 60vw;
     height: 10vh;
-    margin: 1.2rem 0px 0px 0px;
+    margin: 0.6rem 0px 0.6rem 0px;
     padding: 1rem;
     background-color: lightblue;
     color: black;
@@ -123,8 +143,11 @@
     box-shadow: -2px 2px 2px white;
 }
 
+
+
 }
 
+/* for desktop */
 @media only screen and (min-width: 768px) {
 
     .start-menu {
@@ -153,17 +176,8 @@
     }
 
     .question-text-box {
-        display: flex;
         font-size: 2rem;
-        justify-content: center;
-        align-items: center;
-        padding: 1rem;
-        width: 80vw;
-        height: 20vh;
-        background-color: purple;
-        color: white;
-        border-radius: 1rem;
-        box-shadow: 0 0 0 3px white, 0 0 0 5px grey, 0 0 0 7px black; 
+        overflow: hidden;
     }
 
     .answer-text-box {

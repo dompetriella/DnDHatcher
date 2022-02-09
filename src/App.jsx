@@ -2,10 +2,10 @@ import React, {useState, useEffect, useRef} from 'react';
 import {natures, questions} from './db'
 import {raceQuestions} from './support/raceQuestions'
 import {classQuestions} from './support/classQuestions'
-import Question from './components/question'
-import Answer from './components/answer'
-import Start from './components/start'
-import TextBox from './components/textBox'
+import Question from './components/Question'
+import Answer from './components/Answer'
+import Start from './components/Start'
+import TextBox from './components/TextBox'
 import './App.css';
 
 function App() {
@@ -50,7 +50,7 @@ function App() {
     }
 
     //sets how many questions are answered in quiz mode
-    const userQuestionNumber = 4;
+    const userQuestionNumber = 10;
 
     //gets the questions object for the main quiz
     const getdbQuestions = () => {
@@ -78,11 +78,32 @@ function App() {
         }
         return inputArray
 
-}
+    }
+
+    const pickTwoUniqueValuesWithSameKey = objectList => {
+        let returnList = []
+        if (objectList.length > 0) {
+            let randomIndex = Math.floor(Math.random()*objectList.length);
+            let randomObj1 = objectList[randomIndex]
+            returnList.push(randomObj1)
+            objectList.splice(randomIndex, 1)
+            if (objectList.length > 0) {
+                while (true) {
+                    let randomObj2 = objectList[Math.floor(Math.random()*objectList.length)]
+                    if (Object.values(randomObj1) !== Object.values(randomObj2)) returnlist.push(randomObj2)
+                    returnList.push(randomObj2)
+                    break
+                }
+            }
+        }
+
+        return returnList
+    }
 
     //main quiz questions list store
     let quizQuestionsList = []
     let secondaryQuestionsList = []
+    let skillProf = []
 
     // main starting screen
     const startScreen = (props) => {
@@ -99,7 +120,7 @@ function App() {
     const beginQuiz = () => {
         setMainContent(
             <TextBox 
-            text = {"You're going to be asked a few questions, just answer how you (or your character) would answer them"}
+            text = {"You're going to be asked a few questions, just answer how you (or your character) would answer them..."}
             buttonText = {"Next"}
             onClick = {mainQuizMode}
             button = {true}
@@ -127,12 +148,12 @@ function App() {
             a1: {
                 "text": "Yes",
                 "attribute" : "gamble",
-                "value" : "true"
+                "value" : true
             },
             a2: {
                 "text": "No",
                 "attribute" : "gamble",
-                "value" : "false"
+                "value" : false
             },
             
         } 
@@ -187,12 +208,12 @@ function App() {
         else {
             //for testing purposes, only dwarf paladin is available
             setMainContent(
-            <div>
+            <div className="center-column">
                 <div>--- Congrats, all questions complete ---</div>
                 <div>Race: {userTotals.calculatedRace}</div>
                 <div>Class: {userTotals.calculatedClass}</div>
                 <TextBox 
-                    text = {"Oh yeah, it's all coming together.  Just a few more questions"}
+                    text = {"Oh yeah, it's all coming together.  Just a few more questions..."}
                     button = {true}
                     buttonText = {"Continue"}
                     onClick = {altQuizMode}
@@ -205,6 +226,12 @@ function App() {
 
     }
 
+    const logAllAttributes = () => {
+        for (const property in userTotals) {
+            console.log(`${property}: ${userTotals[property]}`)       
+        }
+    }
+    
     const displayAltModeQuestion = (altQuestionsList) => {
         if (altQuestionsList.length > 0) {
             let currentQuestion = altQuestionsList[0]
@@ -244,20 +271,16 @@ function App() {
         altQuestionsList.splice(0, 1)
 
         }
-        
+
         //once main mode quiz is done
         else {
-            //for testing purposes, only dwarf paladin is available
             setMainContent(
-            <div>
-                <div>Subclass: {userTotals['subclass']}</div>
                 <TextBox 
                     text = {"All Done!"}
                     button = {true}
                     buttonText = {"Continue to Character Sheet"}
-                    //onClick = {raceQuizMode}
+                    onClick = {logAllAttributes}
                 />
-            </div>
 
             )
         }
@@ -324,9 +347,20 @@ function App() {
         displayMainModeQuestion()
     }
 
+    
+    // applies the attribute and value directly to the user object
+    // if it's a skill proficiency it goes to skillProf list
+    // does stuff like add a subclass or tools
     const applyAltPropertiesFromAnswers = (attribute, value) => {
         console.log(`Attribute: ${attribute} - Value: ${value}`)
-        userTotals[attribute] = [...value]
+        if (attribute === "skill") {
+            skillProf.push({attribute: value})
+        }
+        else {
+            userTotals[attribute] = value
+            console.log("added " + attribute + " to user totals")
+        }
+
         displayAltModeQuestion(secondaryQuestionsList)
     }
 
