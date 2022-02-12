@@ -100,6 +100,37 @@ function App() {
         return returnList
     }
 
+    const rollDice = max => {
+        return Math.floor(Math.random()*max) + 1
+    }
+
+    const diceBestOf = (max, howMany = 1, bestOf = 0) => {
+        let returnList = []
+        for (let i = 0; i < howMany; i++) {
+            returnList.push(rollDice(max))
+        }
+        console.log(returnList)
+
+        for (let i = 0; i < howMany - bestOf; i++) {
+            let smallNum = Math.min(...returnList);
+            console.log(smallNum)
+            let deleteIndex = returnList.indexOf(smallNum)
+            returnList.splice(deleteIndex, 1)
+        }
+        console.log(returnList)
+        return returnList
+    }
+
+    const sumList = list => {
+        return list.reduce((partialSum, a) => partialSum + a, 0);
+    }
+
+    const createAbilityScores = () => {
+        for (let i = 0; i < 6; i++) {
+            
+        }
+    }
+
     //main quiz questions list store
     let quizQuestionsList = []
     let secondaryQuestionsList = []
@@ -226,11 +257,16 @@ function App() {
 
     }
 
+//////////////////////////////////////////////////////////////////
+//Alt Quiz Code
+    
     const logAllAttributes = () => {
         for (const property in userTotals) {
             console.log(`${property}: ${userTotals[property]}`)       
         }
     }
+
+    
     
     const displayAltModeQuestion = (altQuestionsList) => {
         if (altQuestionsList.length > 0) {
@@ -279,7 +315,7 @@ function App() {
                     text = {"All Done!"}
                     button = {true}
                     buttonText = {"Continue to Character Sheet"}
-                    onClick = {logAllAttributes}
+                    onClick = {characterSheetStart}
                 />
 
             )
