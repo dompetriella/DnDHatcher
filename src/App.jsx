@@ -6,6 +6,8 @@ import Question from './components/Question'
 import Answer from './components/Answer'
 import Start from './components/Start'
 import TextBox from './components/TextBox'
+import CharacterSheet from './components/CharacterSheet'
+import ResultsPage from './components/ResultsPage'
 import './App.css';
 
 function App() {
@@ -15,8 +17,8 @@ function App() {
 
     //character totals
     const userTotals = {
-        name: "test",
-        characterName: "characterTest",
+        name: "Human McHumanface",
+        characterName: "Fantasy McFantasyFace",
         calculatedRace: "",
         calculatedClass: "",
         background: [],
@@ -45,12 +47,14 @@ function App() {
             "sorcerer":0,
             "warlock":0,
             "wizard":0
-        }
+        },
+
+        abilityScoresList: []
 
     }
 
-    //sets how many questions are answered in quiz mode
-    const userQuestionNumber = 10;
+
+// UTILITY FUNCTIONS //////////////////////
 
     //gets the questions object for the main quiz
     const getdbQuestions = () => {
@@ -125,12 +129,23 @@ function App() {
         return list.reduce((partialSum, a) => partialSum + a, 0);
     }
 
-    const createAbilityScores = () => {
+    const createAbilityScoresList = () => {
+        let returnList = []
         for (let i = 0; i < 6; i++) {
-            
+            returnList.push(sumList(diceBestOf(6, 4, 3)))
         }
+        return returnList
     }
 
+/////////////////////////////////////////////////////////////////
+
+
+//GLOBAL FUNCTIONS ////////////////////////////////////////////
+
+    
+    //sets how many questions are answered in quiz mode
+    const userQuestionNumber = 10;
+    
     //main quiz questions list store
     let quizQuestionsList = []
     let secondaryQuestionsList = []
@@ -148,6 +163,9 @@ function App() {
         startScreen()
     }, [])
 
+
+// START CODE ///////////////////////////////////////////////////
+    
     const beginQuiz = () => {
         setMainContent(
             <TextBox 
@@ -159,6 +177,8 @@ function App() {
         )
     }
 
+//QUIZ MODE CODE ////////////////////////////////////////////////
+    
     // creates a randomnly shuffled list of questions that is userQuestionNumber in length
     const createQuestionsList = () => {
         let allQuestions = [...getdbQuestions()]
@@ -169,27 +189,6 @@ function App() {
             allQuestions.splice(randomQuestionIndex, 1)
         }
         return returnList
-    }
-
-    const createSecondaryQuestionsList = (race, clas) => {
-        let allSecondaryQuestions = [...getdbRaceQuestions(race), ...getdbClassQuestions(clas)]
-        allSecondaryQuestions.push(
-        {
-            question: "Are you a gambling person?",
-            a1: {
-                "text": "Yes",
-                "attribute" : "gamble",
-                "value" : true
-            },
-            a2: {
-                "text": "No",
-                "attribute" : "gamble",
-                "value" : false
-            },
-            
-        } 
-        )
-        return shuffleArray(allSecondaryQuestions)
     }
 
     //for displaying questions/answers in main quiz mode
@@ -257,73 +256,6 @@ function App() {
 
     }
 
-//////////////////////////////////////////////////////////////////
-//Alt Quiz Code
-    
-    const logAllAttributes = () => {
-        for (const property in userTotals) {
-            console.log(`${property}: ${userTotals[property]}`)       
-        }
-    }
-
-    
-    
-    const displayAltModeQuestion = (altQuestionsList) => {
-        if (altQuestionsList.length > 0) {
-            let currentQuestion = altQuestionsList[0]
-            let questionAndAnswers = []
-            questionAndAnswers.push(
-                <Question 
-                    text = {currentQuestion.question}
-                    key = {"question"}
-                />
-            )
-            for (let i = 1; i < Object.keys(currentQuestion).length; i++) {
-                let answerObject = currentQuestion[Object.keys(currentQuestion)[i]]
-                
-                let answerText = answerObject.text
-                let attribute = answerObject.attribute
-                let value = answerObject.value
-
-            
-                questionAndAnswers.push(
-                <Answer 
-                    text = {answerText}
-                    key = {i}
-                    mode = {"alt"}
-                    attribute = {attribute}
-                    value = {value}
-                    addAttribute = {applyAltPropertiesFromAnswers}
-                />
-                )
-            }
-
-            setMainContent(
-                    <div className="qa-container">
-                        {questionAndAnswers}
-                    </div>
-                )
-
-        altQuestionsList.splice(0, 1)
-
-        }
-
-        //once main mode quiz is done
-        else {
-            setMainContent(
-                <TextBox 
-                    text = {"All Done!"}
-                    button = {true}
-                    buttonText = {"Continue to Character Sheet"}
-                    onClick = {characterSheetStart}
-                />
-
-            )
-        }
-
-
-    }
-
     //calculates and adds values to user object based on what answer they clicked on in the quiz
     const calculateAnswer = (firstNature, secondNature, thirdNature, background) => {
         
@@ -383,6 +315,106 @@ function App() {
         displayMainModeQuestion()
     }
 
+//////////////////////////////////////////////////////////////////
+//Alt Quiz Code
+
+    const createSecondaryQuestionsList = (race, clas) => {
+        let allSecondaryQuestions = []
+        if (getdbRaceQuestions(race).length > 0) allSecondaryQuestions =  [...getdbRaceQuestions(race)]
+        if (getdbClassQuestions(clas).length > 0) allSecondaryQuestions = [...getdbClassQuestions(clas)]
+        
+        allSecondaryQuestions.push(
+        {
+            question: "Are you a gambling person?",
+            a1: {
+                "text": "Yes",
+                "attribute" : "gamble",
+                "value" : true
+            },
+            a2: {
+                "text": "No",
+                "attribute" : "gamble",
+                "value" : false
+            },
+            
+        } 
+        )
+        return shuffleArray(allSecondaryQuestions)
+    }
+    
+    const logAllAttributes = () => {
+        for (const property in userTotals) {
+            console.log(`${property}: ${userTotals[property]}`)       
+        }
+    }
+
+    const setAbiltyScores = () => {
+        if (userTotals["gamble"]) {
+            userTotals.abilityScoresList = createAbilityScoresList()
+        }
+        else {
+            userTotals.abilityScoresList = [15, 14, 13, 12, 10, 8]
+        }
+    }
+    
+    const displayAltModeQuestion = (altQuestionsList) => {
+        if (altQuestionsList.length > 0) {
+            let currentQuestion = altQuestionsList[0]
+            let questionAndAnswers = []
+            questionAndAnswers.push(
+                <Question 
+                    text = {currentQuestion.question}
+                    key = {"question"}
+                />
+            )
+            for (let i = 1; i < Object.keys(currentQuestion).length; i++) {
+                let answerObject = currentQuestion[Object.keys(currentQuestion)[i]]
+                
+                let answerText = answerObject.text
+                let attribute = answerObject.attribute
+                let value = answerObject.value
+
+            
+                questionAndAnswers.push(
+                <Answer 
+                    text = {answerText}
+                    key = {i}
+                    mode = {"alt"}
+                    attribute = {attribute}
+                    value = {value}
+                    addAttribute = {applyAltPropertiesFromAnswers}
+                />
+                )
+            }
+
+            setMainContent(
+                    <div className="qa-container">
+                        {questionAndAnswers}
+                    </div>
+                )
+
+        altQuestionsList.splice(0, 1)
+
+        }
+
+        //once main mode quiz is done
+        else {
+            setMainContent(
+                <TextBox 
+                    text = {"All Done!"}
+                    button = {true}
+                    buttonText = {"Continue to see Quiz Results!"}
+                    onClick = {showResultsPage}
+                />
+
+            )
+        }
+
+
+    }
+
+
+
     
     // applies the attribute and value directly to the user object
     // if it's a skill proficiency it goes to skillProf list
@@ -400,13 +432,37 @@ function App() {
         displayAltModeQuestion(secondaryQuestionsList)
     }
 
+/////////////////////////////////////////////////////////////////
+// POST QUIZ CODE
+
+    const showResultsPage = () => {
+        setMainContent(
+            <ResultsPage 
+                userClass = {userTotals.calculatedClass}
+                userRace = {userTotals.calculatedRace}
+                userBackground = {userTotals.background[0]}
+            />
+        )
+    }
+
+    const characterSheetStart = () => {
+        
+        setMainContent(
+            <CharacterSheet 
+                abilityScores = {createAbilityScoresList}
+                userObject = {userTotals}
+                />
+        )
+    }
+    
+
     // logical functional layout of main quiz mode
     const mainQuizMode = () => {
         quizQuestionsList = createQuestionsList()
         displayMainModeQuestion()
     }
 
-    // logical functional layout of race quiz mode
+    // logical functional layout of alt quiz mode
     const altQuizMode = () => {
         secondaryQuestionsList = createSecondaryQuestionsList(userTotals.calculatedRace, userTotals.calculatedClass)
         displayAltModeQuestion(secondaryQuestionsList)
