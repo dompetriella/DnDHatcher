@@ -244,9 +244,6 @@ function App() {
             //for testing purposes, only dwarf paladin is available
             setMainContent(
             <div className="center-column">
-                <div>--- Congrats, all questions complete ---</div>
-                <div>Race: {userTotals.calculatedRace}</div>
-                <div>Class: {userTotals.calculatedClass}</div>
                 <TextBox 
                     text = {"Oh yeah, it's all coming together.  Just a few more questions..."}
                     button = {true}
