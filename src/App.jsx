@@ -3,6 +3,7 @@ import {natures, questions} from './db'
 import {raceQuestions} from './support/raceQuestions'
 import {classQuestions} from './support/classQuestions'
 import {classSaves} from './support/classSaves'
+import {backgrounds} from './support/backgrounds'
 import Question from './components/Question'
 import Answer from './components/Answer'
 import Start from './components/Start'
@@ -475,7 +476,7 @@ function App() {
             console.log(userTotals.background)
         } else {
             //testing purposes, change this later
-            userTotals.calculatedBackground = "acolyte"
+            userTotals.calculatedBackground = randomChoice(backgrounds)
         }
         console.log("background length: " + userTotals.background.length)
         console.log(userTotals.calculatedBackground)

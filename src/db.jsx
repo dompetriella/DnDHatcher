@@ -950,7 +950,7 @@ export const questions = [
             "first": ["Ambitious"],
             "second": ["Clever"],
             "third": ["Bold","Quirky","Practical","Decisive"],
-            "background": []
+            "background": ["charlatan"]
         },
     },
 
@@ -993,7 +993,7 @@ export const questions = [
             "first": ["Daring"],
             "second": ["Outgoing"],
             "third": ["Quirky"],
-            "background": []
+            "background": ["entertainer"]
         },
         a3: {
             "text": "Cool and Casually",
@@ -1025,7 +1025,7 @@ export const questions = [
             "first": ["Quiet"],
             "second": ["Easygoing"],
             "third": ["Opinionated","Aloof"],
-            "background": []
+            "background": ["hermit"]
         },
     },
 
@@ -1036,14 +1036,14 @@ export const questions = [
             "first": ["Rowdy"],
             "second": ["Decisive"],
             "third": ["Rash","Serious","Daring"],
-            "background": []
+            "background": ["soldier"]
         },
         a2: {
             "text": "Try to reason with the mugger",
             "first": ["Forgiving"],
             "second": ["Intuitive"],
             "third": ["Calm","Clever","Logical","Contemplative"],
-            "background": []
+            "background": ["charlatan"]
         },
         a3: {
             "text": "RUN!",
@@ -1087,7 +1087,7 @@ export const questions = [
         "first": ["Logical"],
         "second": ["Careful","Dutiful","Focused"],
         "third": ["Contemplative","Timid","Stoic"],
-        "background": [],
+        "background": ["sage"],
         },
         
         a2: {
@@ -1132,7 +1132,7 @@ export const questions = [
         "first": ["Rowdy"],
         "second": ["Aloof","Bold","Brave","Daring","Easygoing"],
         "third": ["Practical"],
-        "background": [],
+        "background": ["folk hero"],
         },
     
     },
@@ -1195,7 +1195,7 @@ export const questions = [
         "first": ["Careful","Timid"],
         "second": ["Decisive","Intuitive","Opinionated"],
         "third": ["Serious","Practical"],
-        "background": [],
+        "background": ["acolyte"],
         },
         
         a2: {
@@ -1203,7 +1203,7 @@ export const questions = [
         "first": ["Aloof","Naive"],
         "second": ["Quirky"],
         "third": ["Easygoing","Rash"],
-        "background": [],
+        "background": ["urchin"],
         },
         
         a3: {
@@ -1224,7 +1224,7 @@ export const questions = [
         "first": ["Bold","Brave","Serious","Stoic"],
         "second": ["Daring","Decisive","Opinionated","Rash"],
         "third": ["Ambitious","Dutiful"],
-        "background": [],
+        "background": ["soldier"],
         },
         
         a2: {
@@ -1232,7 +1232,7 @@ export const questions = [
         "first": ["Calm","Focused"],
         "second": ["Contemplative","Deep","Logical"],
         "third": ["Practical","Stoic"],
-        "background": [],
+        "background": ["sailor"],
         },
         
         a3: {
@@ -1240,7 +1240,7 @@ export const questions = [
         "first": ["Humble","Serious","Practical"],
         "second": ["Astute","Clever","Focused","Logical"],
         "third": ["Aloof","Deep","Quiet"],
-        "background": [],
+        "background": ["urchin"],
         },
 
         a4: {
@@ -1261,7 +1261,7 @@ export const questions = [
         "first": ["Bold","Brave","Rash"],
         "second": ["Energetic","Naive","Rowdy"],
         "third": ["Ambitious","Daring","Decisive","Focused"],
-        "background": [],
+        "background": ["folk hero"],
         },
         
         a2: {
