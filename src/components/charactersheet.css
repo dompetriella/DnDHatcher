@@ -1,0 +1,38 @@
+.flex {
+    display: flex;
+    flex-direction: row;
+}
+
+.flex-center {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-self: center;
+}
+
+.flex-center-space {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+    flex-wrap: wrap;
+}
+
+.ability-score-container {
+    display: flex;
+    align-items: center;
+    justify-self: center;
+    flex-direction: column;
+    border: solid black 5px;
+    height: 5rem;
+    padding: 0.5rem;
+    width: 5rem;
+    gap: 0.5rem;
+    border-radius: 1rem;
+}
+
+img {
+    max-width: 90vw;
+}
+

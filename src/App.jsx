@@ -2,6 +2,7 @@ import React, {useState, useEffect, useRef} from 'react';
 import {natures, questions} from './db'
 import {raceQuestions} from './support/raceQuestions'
 import {classQuestions} from './support/classQuestions'
+import {classSaves} from './support/classSaves'
 import Question from './components/Question'
 import Answer from './components/Answer'
 import Start from './components/Start'
@@ -21,6 +22,7 @@ function App() {
         characterName: "Fantasy McFantasyFace",
         calculatedRace: "",
         calculatedClass: "",
+        calculatedBackground: "",
         background: [],
 
         raceTotals: {
@@ -28,7 +30,7 @@ function App() {
             "dwarf":0,
             "elf":0,
             "gnome":0,
-            "halfing":0,
+            "halfling":0,
             "half-orc":0,
             "human":0,
             "tiefling":0,
@@ -55,6 +57,11 @@ function App() {
 
 
 // UTILITY FUNCTIONS //////////////////////
+
+    function randomChoice(list) {
+        let randomIndex = Math.floor(Math.random()*list.length); 
+        return list[randomIndex]
+    }
 
     //gets the questions object for the main quiz
     const getdbQuestions = () => {
@@ -113,7 +120,6 @@ function App() {
         for (let i = 0; i < howMany; i++) {
             returnList.push(rollDice(max))
         }
-        console.log(returnList)
 
         for (let i = 0; i < howMany - bestOf; i++) {
             let smallNum = Math.min(...returnList);
@@ -121,7 +127,6 @@ function App() {
             let deleteIndex = returnList.indexOf(smallNum)
             returnList.splice(deleteIndex, 1)
         }
-        console.log(returnList)
         return returnList
     }
 
@@ -310,7 +315,7 @@ function App() {
         userTotals.calculatedClass = selectedClass.clas
         console.log(`Current Selected Class: ${selectedClass.clas} - ${selectedClass.classTotal}`)
         console.log(`User Class: ${userTotals.calculatedClass}`)
-        userTotals.background.push(background)
+        if (background) userTotals.background.push(background)
 
         displayMainModeQuestion()
     }
@@ -348,13 +353,16 @@ function App() {
         }
     }
 
-    const setAbiltyScores = () => {
+    const setAbilityScores = () => {
+        let returnList = []
         if (userTotals["gamble"]) {
-            userTotals.abilityScoresList = createAbilityScoresList()
+            returnList = createAbilityScoresList()
         }
         else {
-            userTotals.abilityScoresList = [15, 14, 13, 12, 10, 8]
+            returnList = [15, 14, 13, 12, 10, 8]
         }
+
+        return returnList
     }
     
     const displayAltModeQuestion = (altQuestionsList) => {
@@ -435,12 +443,55 @@ function App() {
 /////////////////////////////////////////////////////////////////
 // POST QUIZ CODE
 
+    // for testing as well, these will be set depending on race, class and background with a much fancier algorithm
+    //currently set randomly
+    const assignAbilityScores = () => {
+        let abilities = [
+            "strength",
+            "dexterity",
+            "constitution",
+            "intellegence",
+            "wisdom",
+            "charisma"
+        ]
+
+        let scores = setAbilityScores()
+
+        for (let i = 0; i < 6; i++) {
+            let abilityKeyIndex = Math.floor(Math.random()*abilities.length)
+            let abilityKey = abilities[abilityKeyIndex]
+            abilities.splice(abilityKeyIndex, 1)
+            
+            let abilityScoreIndex = Math.floor(Math.random()*scores.length)
+            let abilityScore = scores[abilityScoreIndex]
+            scores.splice(abilityScoreIndex, 1)
+
+            userTotals[abilityKey] = abilityScore
+            console.log(`${abilityKey}: ${abilityScore}`)
+        }
+        
+    }
+    
+    const finalCalculations = () => {
+        if (userTotals.background.length > 0) {
+            userTotals.calculatedBackground = randomChoice(userTotals.background)
+            console.log(userTotals.background)
+        } else {
+            //testing purposes, change this later
+            userTotals.calculatedBackground = "acolyte"
+        }
+        console.log("background length: " + userTotals.background.length)
+        console.log(userTotals.calculatedBackground)
+        assignAbilityScores()
+    }
+    
     const showResultsPage = () => {
+
+        finalCalculations()
+        
         setMainContent(
             <ResultsPage 
-                userClass = {userTotals.calculatedClass}
-                userRace = {userTotals.calculatedRace}
-                userBackground = {userTotals.background[0]}
+                userTotals = {userTotals}
             />
         )
     }

@@ -1,5 +1,6 @@
 import React from 'react';
-import './menus.css';
+import AbilityScoreBox from './AbilityScoreBox'
+import './charactersheet.css';
 
 function ResultsPage(props) {
 
@@ -147,13 +148,39 @@ const getClassImage = (userClass) => {
 
     return (
         <div>
-            <h1>You are a {capitalStr(props.userClass)} {capitalStr(props.userRace)} Acolyte!</h1>
+            <h1>You are a {capitalStr(props.userTotals.calculatedRace)} {capitalStr(props.userTotals.calculatedClass)} {capitalStr(props.userTotals.calculatedBackground)}</h1>
+            <div className="flex-center-space">
+                <AbilityScoreBox 
+                    text = "STR"
+                    abilityScore = {props.userTotals.strength}
+                />
+                <AbilityScoreBox 
+                    text = "DEX"
+                    abilityScore = {props.userTotals.dexterity}      
+                />
+                <AbilityScoreBox 
+                    text = "CON"
+                    abilityScore = {props.userTotals.constitution}
+                />
+                <AbilityScoreBox 
+                    text = "INT"
+                    abilityScore = {props.userTotals.intellegence}
+                />
+                <AbilityScoreBox 
+                    text = "WIS"
+                    abilityScore = {props.userTotals.wisdom}
+                />
+                <AbilityScoreBox 
+                    text = "CHA"
+                    abilityScore = {props.userTotals.charisma} 
+                />
+            </div>
             
-            <h2>Race: {capitalStr(props.userRace)}</h2>
-            <img src={getRaceImage(props.userRace).link} alt={getRaceImage(props.userRace).alt} />
+            <h2>Race: {capitalStr(props.userTotals.calculatedRace)}</h2>
+            <img src={getRaceImage(props.userTotals.calculatedRace).link} alt={getRaceImage(props.userTotals.calculatedRace).alt} />
             
-            <h2>Class: {capitalStr(props.userClass)}</h2>
-            <img src={getClassImage(props.userClass).link} alt={getClassImage(props.userClass).alt} />
+            <h2>Class: {capitalStr(props.userTotals.calculatedClass)}</h2>
+            <img src={getClassImage(props.userTotals.calculatedClass).link} alt={getClassImage(props.userTotals.calculatedClass).alt} />
             
             <h2>Background: Acolyte</h2>
         </div>
