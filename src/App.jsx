@@ -92,7 +92,7 @@ function App() {
 
     }
 
-    const pickTwoUniqueValuesWithSameKey = objectList => {
+    function pickTwoUniqueValuesWithSameKey(objectList) {
         let returnList = []
         if (objectList.length > 0) {
             let randomIndex = Math.floor(Math.random()*objectList.length);
@@ -112,11 +112,11 @@ function App() {
         return returnList
     }
 
-    const rollDice = max => {
+    function rollDice(max) {
         return Math.floor(Math.random()*max) + 1
     }
 
-    const diceBestOf = (max, howMany = 1, bestOf = 0) => {
+    function diceBestOf(max, howMany = 1, bestOf = 0) {
         let returnList = []
         for (let i = 0; i < howMany; i++) {
             returnList.push(rollDice(max))
@@ -131,16 +131,30 @@ function App() {
         return returnList
     }
 
-    const sumList = list => {
+    function sumList(list) {
         return list.reduce((partialSum, a) => partialSum + a, 0);
     }
 
-    const createAbilityScoresList = () => {
+    function createAbilityScoresList() {
         let returnList = []
         for (let i = 0; i < 6; i++) {
             returnList.push(sumList(diceBestOf(6, 4, 3)))
         }
+        console.log("ability scores: " + returnList)
         return returnList
+    }
+
+    function sortObjectByDescendingValues(obj) {
+        let sortable = [];
+        for (let clas in userTotals.classTotals) {
+            sortable.push([clas, userTotals.classTotals[clas]]);
+        }
+        
+        sortable.sort(function(a, b) {
+            b[1] - a[1];
+        });
+
+        return sortable
     }
 
 /////////////////////////////////////////////////////////////////
@@ -444,29 +458,37 @@ function App() {
     // for testing as well, these will be set depending on race, class and background with a much fancier algorithm
     //currently set randomly
     const assignAbilityScores = () => {
-        let abilities = [
-            "strength",
-            "dexterity",
-            "constitution",
-            "intellegence",
-            "wisdom",
-            "charisma"
-        ]
 
         let scores = setAbilityScores()
+        // sorts scores in descending order
+        scores.sort(function(a, b){return b-a});
+        // sorts userTotals.classTotals by value descending
+        let sortedClassValues = sortObjectByDescendingValues(userTotals.classTotals)
+        console.log(sortedClassValues)
+        
+        let i = 0
+        
+        sortedClassValues.forEach(clas => {
+            //               classSaves["barbarian", 300][0]
+            //               classSaves["barbarian"] = ["strength", "dex"]
+            // classValue = ["strength", "dex"]
 
-        for (let i = 0; i < 6; i++) {
-            let abilityKeyIndex = Math.floor(Math.random()*abilities.length)
-            let abilityKey = abilities[abilityKeyIndex]
-            abilities.splice(abilityKeyIndex, 1)
-            
-            let abilityScoreIndex = Math.floor(Math.random()*scores.length)
-            let abilityScore = scores[abilityScoreIndex]
-            scores.splice(abilityScoreIndex, 1)
+            let classValue = classSaves[clas[0]]
 
-            userTotals[abilityKey] = abilityScore
-            console.log(`${abilityKey}: ${abilityScore}`)
-        }
+            // if userTotals doesn't have a strength key [!"str","dex"] add it
+            if (!(classValue[0] in userTotals)) {
+                userTotals[classValue[0]] = scores[i]
+                i++
+                console.log(classValue[0] + ": " + scores[i] + " " + i)
+            }
+            // if userTotals doesn't have a dex key ["str",!"dex"] add it
+            if (!(classValue[1] in userTotals)) {
+                userTotals[classValue[1]] = scores[i]
+                i++
+                console.log(classValue[1] + ": " + scores[i] + " " + i)
+            }
+
+        })
         
     }
     

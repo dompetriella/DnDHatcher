@@ -5,7 +5,7 @@ function AbilityScoreBox(props) {
 
     const [abilityScoreModifier, setAbilityScoreModifier] = useState()
 
-    function calculateAbilityScoreModifier(num) {
+    function calculateModifier(num) {
         if (num < 2) return -5
         if (num < 4) return -4
         if (num < 6) return -3
@@ -23,13 +23,22 @@ function AbilityScoreBox(props) {
         if (num < 30) return 9
         if (num >= 30) return 10
     }
+
+    function displayModifier(num) {
+        if (num > 0) {
+            return "+" + num
+        }
+        else {
+            return num
+        }
+    }
     
     return (
         <div>
             <div className="ability-score-container">
                 <div>{props.text}</div>
                 <div>{props.abilityScore}</div>
-                <div>{calculateAbilityScoreModifier(props.abilityScore)}</div>
+                <div>{displayModifier(calculateModifier(props.abilityScore))}</div>
             </div>
         </div>
     );

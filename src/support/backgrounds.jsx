@@ -1,4 +1,4 @@
-export default backgrounds = [
+export const backgrounds = [
     "acolyte",
     "charlatan",
     "criminal",

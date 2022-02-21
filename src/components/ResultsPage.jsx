@@ -182,7 +182,7 @@ const getClassImage = (userClass) => {
             <h2>Class: {capitalStr(props.userTotals.calculatedClass)}</h2>
             <img src={getClassImage(props.userTotals.calculatedClass).link} alt={getClassImage(props.userTotals.calculatedClass).alt} />
             
-            <h2>Background: Acolyte</h2>
+            <h2>Background: {capitalStr(props.userTotals.calculatedBackground)}</h2>
         </div>
     );
 }
