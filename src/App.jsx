@@ -146,13 +146,13 @@ function App() {
 
     function sortObjectByDescendingValues(obj) {
         let sortable = [];
-        for (let clas in userTotals.classTotals) {
-            sortable.push([clas, userTotals.classTotals[clas]]);
+        for (let clas in obj) {
+            sortable.push([clas, obj[clas]]);
         }
         
-        sortable.sort(function(a, b) {
-            b[1] - a[1];
-        });
+        sortable.sort(function(x,y) {
+            return y[1] - x[1];
+        })
 
         return sortable
     }
@@ -464,10 +464,8 @@ function App() {
         scores.sort(function(a, b){return b-a});
         // sorts userTotals.classTotals by value descending
         let sortedClassValues = sortObjectByDescendingValues(userTotals.classTotals)
-        console.log(sortedClassValues)
         
         let i = 0
-        
         sortedClassValues.forEach(clas => {
             //               classSaves["barbarian", 300][0]
             //               classSaves["barbarian"] = ["strength", "dex"]
@@ -478,14 +476,15 @@ function App() {
             // if userTotals doesn't have a strength key [!"str","dex"] add it
             if (!(classValue[0] in userTotals)) {
                 userTotals[classValue[0]] = scores[i]
-                i++
                 console.log(classValue[0] + ": " + scores[i] + " " + i)
+                i++
+
             }
             // if userTotals doesn't have a dex key ["str",!"dex"] add it
             if (!(classValue[1] in userTotals)) {
                 userTotals[classValue[1]] = scores[i]
-                i++
                 console.log(classValue[1] + ": " + scores[i] + " " + i)
+                i++
             }
 
         })

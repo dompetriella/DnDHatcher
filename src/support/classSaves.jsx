@@ -22,6 +22,6 @@ export const classSaves = {
 
     "warlock": ["wisdom", "charisma"],
 
-    "wizard": ["intellgence", "wisdom"],
+    "wizard": ["intellegence", "wisdom"],
             
 }
